@@ -29,4 +29,6 @@
 
 1. [BOM](/cheatSheet/BOM.md)
 1. [内置对象-属性方法](/cheatSheet/内置对象-属性方法.md)
-1. [JS 小技巧](/cheatSheet/JS%20小技巧.md)
+1. [JS 小知识](/cheatSheet/JS%20小知识.md)
+1. [JS 常用函数练习](/cheatSheet/JS%20常用函数练习.md/)
+1. [正则练习](/cheatSheet/正则练习.md/)

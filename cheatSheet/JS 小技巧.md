@@ -10,6 +10,8 @@
 - [函数](#函数)
   - [this 的工作原理](#this-的工作原理)
   - [函数内变量名解析顺序](#函数内变量名解析顺序)
+- [ES6 新增](#es6-新增)
+  - [可迭代协议与迭代器协议](#可迭代协议与迭代器协议)
 
 <!-- /TOC -->
 
@@ -87,7 +89,7 @@ hasOwnProperty 不遍历原型，遍历不可枚举
 
 ### this 的工作原理
 
--. 一共只有五种情况：
+- 一共只有五种情况：
 
 1. 全局范围直接使用 this：指向全局对象
 1. 函数内调用 this：也指向全局对象
@@ -95,7 +97,7 @@ hasOwnProperty 不遍历原型，遍历不可枚举
 1. 构造函数内使用 this：指向新创建的对象
 1. apply call 显式设置 this：显式设置为函数调用的第一个参数
 
--. 常见误解一：直接调用函数时，this 指向全局对象，这是语言设计的错误地方！
+- 常见误解一：直接调用函数时，this 指向全局对象，这是语言设计的错误地方！
 
 ```js
 Foo.method = function() {
@@ -118,7 +120,7 @@ Foo.method = function() {
 };
 ```
 
--. 常见误解二：方法的赋值表达式。将一个对象的方法赋值给一个变量，此时新的方法调用，会导致内部的 this 不再指向原对象。
+- 常见误解二：方法的赋值表达式。将一个对象的方法赋值给一个变量，此时新的方法调用，会导致内部的 this 不再指向原对象。
 
 ```js
 var test = someObject.methodTest;
@@ -133,3 +135,56 @@ test(); // 内部的 this 不再指向 someObject
 1. 函数形式参数是否有使用 foo 名称的；
 1. 函数自身是否叫做 foo；
 1. 回溯到上一级作用域，然后从 #1 重新开始。
+
+## ES6 新增
+
+### 可迭代协议与迭代器协议
+
+可迭代协议允许 JavaScript 对象去定义或定制它们的迭代行为, 例如定义在一个 `for..of` 结构中什么值可以被循环（得到）。一些内置类型都是内置的可迭代对象并且有默认的迭代行为, 比如 `Array` `String` `Map` `Set` `TypedArray`, 另一些类型则不是 (比如 Object) 。
+
+当一个对象需要被迭代的时候（比如开始用于一个 for..of 循环中），它的@@iterator 方法被调用并且无参数，然后返回一个用于在迭代中获得值的迭代器。
+
+当一个对象被认为是一个迭代器时，它实现了一个 `next()` 的方法并且拥有以下含义：属性为 `next` 值为一个包含 `done (boolean)` 和 `value` 的对象。
+
+```js
+var someArray = [1, 5, 7];
+var someArrayValues = someArray.values();
+
+someArrayValues.toString(); // "[object Array Iterator]"
+someArrayValues === someArrayValues[Symbol.iterator](); // true
+
+var iterator = someArrayValues[Symbol.iterator]();
+
+iterator + ''; // "[object Array Iterator]"
+iterator.next(); // { value: 1, done: false }
+iterator.next(); // { value: 5, done: false }
+iterator.next(); // { value: 7, done: false }
+iterator.next(); // { value: undefined, done: true }
+```
+
+```js
+// 自定义可迭代对象
+var myIterable = {};
+myIterable[Symbol.iterator] = function*() {
+  yield 1;
+  yield 2;
+  yield 3;
+};
+[...myIterable]; // [1, 2, 3]
+```
+
+```js
+// 生成器式的迭代器
+function* idMaker() {
+  var index = 0;
+  while (true) {
+    yield index++;
+  }
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // '0'
+console.log(gen.next().value); // '1'
+console.log(gen.next().value); // '2'
+```

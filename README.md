@@ -26,4 +26,7 @@
 ## 个人笔记
 
 1. [html 标签速记](/cheatSheet/html%20标签速记.md)
+
+1. [BOM](/cheatSheet/BOM.md)
+1. [内置对象-属性方法](/cheatSheet/内置对象-属性方法.md)
 1. [JS 小技巧](/cheatSheet/JS%20小技巧.md)

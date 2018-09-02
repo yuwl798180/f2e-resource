@@ -1,6 +1,8 @@
+# BOM
+
 > 浏览器对象模型：Browser Object Document
 
-<!-- TOC depthTo:2 -->
+<!-- TOC depthFrom:2 depthTo:2 -->
 
 - [Window 对象](#window-对象)
 - [Location 对象](#location-对象)

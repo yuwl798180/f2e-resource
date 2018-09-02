@@ -6,15 +6,12 @@
 
 ## 资料查询索引
 
+1. [GitHub](https://github.com/)
 1. [MDN](https://developer.mozilla.org)
 1. [API](https://devdocs.io/)
 1. [CSS 参考手册](https://css.doyoe.com/)
 1. [Dev Hint](https://devhints.io/)
 1. [TX 代码规范](http://tguide.qq.com/main/index.htm)
-
-## 优秀网站
-
-1. [w3cplus](https://www.w3cplus.com/)
 
 ## 在线工具
 
@@ -24,10 +21,17 @@
 
 1. [HTML5 test](https://html5test.com/)
 1. [CSS3 test](https://airen.github.io/css3test/)
+1. [CSS animations](https://animista.net/)
+1. [Canvas awesome](https://www.dwitter.net/)
 1. [调色板](https://nipponcolors.com/)
 1. [Can I Use](https://caniuse.com/)
 1. [正则测试](https://regexr.com/)
 1. [Linux 命令搜索](https://wangchujiang.com/linux-command/)
+
+## 前端导航
+
+1. [TX 前端导航](http://www.alloyteam.com/nav/)
+1. [前端库 awesomes](https://www.awesomes.cn/)
 
 ## JavaScript
 

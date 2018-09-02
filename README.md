@@ -4,15 +4,30 @@
 
 ---
 
-## 常用网站索引
+## 资料查询索引
 
 1. [MDN](https://developer.mozilla.org)
 1. [API](https://devdocs.io/)
+1. [CSS 参考手册](https://css.doyoe.com/)
 1. [Dev Hint](https://devhints.io/)
+1. [TX 代码规范](http://tguide.qq.com/main/index.htm)
+
+## 优秀网站
+
+1. [w3cplus](https://www.w3cplus.com/)
 
 ## 在线工具
 
 1. [Babel](https://babeljs.io/repl/)
+1. [CodePen](https://codepen.io/pen)
+1. [CodeSandbox](https://codesandbox.io/)
+
+1. [HTML5 test](https://html5test.com/)
+1. [CSS3 test](https://airen.github.io/css3test/)
+1. [调色板](https://nipponcolors.com/)
+1. [Can I Use](https://caniuse.com/)
+1. [正则测试](https://regexr.com/)
+1. [Linux 命令搜索](https://wangchujiang.com/linux-command/)
 
 ## JavaScript
 
@@ -20,6 +35,17 @@
 1. [ECMAScript 6 入门](https://es6.ruanyifeng.com/)
 1. [es5 vs es6](https://es6-features.org/)
 1. [JavaScript 秘密花园](https://bonsaiden.github.io/JavaScript-Garden/zh/)
+1. [深入理解 JavaScript 系列](https://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html)
+1. [JavaScript Promise 迷你书](https://liubin.org/promises-book/)
+
+1. [JavaScript Style Guide](https://github.com/airbnb/javascript)
+1. [Baidu JavaScript Style](https://github.com/ecomfe/spec)
+1. [30 seconds of code](https://30secondsofcode.org/)
+
+## NodeJs
+
+1. [iKcamp](https://www.ikcamp.com/)
+1. [micro npm packages](https://github.com/parro-it/awesome-micro-npm-packages)
 
 ## 个人笔记
 

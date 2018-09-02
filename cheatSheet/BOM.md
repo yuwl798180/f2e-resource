@@ -50,16 +50,14 @@
 
    var topPos = window.screenTop; // 浏览器窗口距离屏幕上端距离
    var leftPos = window.screenLeft;
+
+   if (typeof topPos !== 'number') {
+     topPos = window.screenY;
+   }
+   if (typeof leftPos !== 'number') {
+     leftPos = window.screenX;
+   }
    ```
-
-
-    if(typeof topPos !== "number") {
-        topPos = window.screenY;
-    }
-    if(typeof leftPos !== 'number') {
-        leftPos = window.screenX;
-    }
-    ```
 
 1. setTimeout / clearTimeout / setInterval / clearInterval
 
@@ -71,20 +69,21 @@
    ```
 
 1. 其他方法
-   方法|描述
-   ---|---
-   alert(message)|显示带有一段消息和一个确认按钮的警告框
-   confirm(message)|显示带有一段消息以及确认按钮和取消按钮的对话框
-   prompt(message, default)|显示可提示用户输入的对话框
-   open(url, name, [features])|打开一个新的浏览器窗口或查找一个已命名的窗口
-   close()|关闭浏览器窗口
-   print()|打印当前窗口的内容
-   moveBy(x,y)|可相对窗口的当前坐标把它移动指定的像素
-   moveTo(x,y)|把窗口的左上角移动到一个指定的坐标
-   resizeBy(x,y)|按照指定的像素调整窗口的大小
-   resizeTo(x,y)|把窗口的大小调整到指定的宽度和高度
-   scrollBy(x,y)|按照指定的像素值来滚动内容
-   scrollTo(x,y)|把内容滚动到指定的坐标
+
+   | 方法                        | 描述                                           |
+   | --------------------------- | ---------------------------------------------- |
+   | alert(message)              | 显示带有一段消息和一个确认按钮的警告框         |
+   | confirm(message)            | 显示带有一段消息以及确认按钮和取消按钮的对话框 |
+   | prompt(message, default)    | 显示可提示用户输入的对话框                     |
+   | open(url, name, [features]) | 打开一个新的浏览器窗口或查找一个已命名的窗口   |
+   | close()                     | 关闭浏览器窗口                                 |
+   | print()                     | 打印当前窗口的内容                             |
+   | moveBy(x,y)                 | 可相对窗口的当前坐标把它移动指定的像素         |
+   | moveTo(x,y)                 | 把窗口的左上角移动到一个指定的坐标             |
+   | resizeBy(x,y)               | 按照指定的像素调整窗口的大小                   |
+   | resizeTo(x,y)               | 把窗口的大小调整到指定的宽度和高度             |
+   | scrollBy(x,y)               | 按照指定的像素值来滚动内容                     |
+   | scrollTo(x,y)               | 把内容滚动到指定的坐标                         |
 
 ## Location 对象
 

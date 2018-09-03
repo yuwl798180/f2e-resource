@@ -23,7 +23,6 @@
 1. [CSS3 test](https://airen.github.io/css3test/)
 1. [CSS animations](https://animista.net/)
 1. [Canvas awesome](https://www.dwitter.net/)
-1. [调色板](https://nipponcolors.com/)
 1. [Can I Use](https://caniuse.com/)
 1. [正则测试](https://regexr.com/)
 1. [Linux 命令搜索](https://wangchujiang.com/linux-command/)

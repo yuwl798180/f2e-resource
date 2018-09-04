@@ -5,6 +5,7 @@
 - [作用域安全的构造函数](#作用域安全的构造函数)
 - [关于**引用类型指针**的工作方式](#关于引用类型指针的工作方式)
 - [关于全局变量](#关于全局变量)
+- [Promise 改写 xhr](#promise-改写-xhr)
 
 <!-- /TOC -->
 
@@ -29,9 +30,9 @@ var person2 = Person('Dave', 22);
 ## 关于**引用类型指针**的工作方式
 
 ```js
-var a = {n: 1};
+var a = { n: 1 };
 var b = a;
-a.x = a = {n: 2}; // 或写成 a = a.x = {n: 2};
+a.x = a = { n: 2 }; // 或写成 a = a.x = {n: 2};
 console.log(a); // {n: 2}
 console.log(b); // {n: 1, x: {n: 2}}
 ```
@@ -57,4 +58,67 @@ var a = 2,
 console.log(a); // 2
 console.log(b); // 10
 console.log(c); // 10
+```
+
+## Promise 改写 xhr
+
+```js
+// xhr 例子
+const getURL = URL =>
+  new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', URL, true);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        resolve(xhr.responseText);
+      } else {
+        reject(new Error(xhr.statusText));
+      }
+    };
+    xhr.onerror = function() {
+      reject(new Error(xhr.statusText));
+    };
+    xhr.send();
+  });
+
+const URL = [
+  'http://azu.github.io/promises-book/json/comment.json',
+  'http://azu.github.io/promises-book/json/people.json',
+];
+
+// 单一请求
+getURL(URL[0])
+  .then(JSON.parse)
+  .then(value => console.log(value))
+  .catch(error => console.log(error));
+
+// 多请求
+var requests = {
+  comment: () => getURL(URL[0]).then(JSON.parse),
+  people: () => getURL(URL[1]).then(JSON.parse),
+};
+// all 是所有同时进行，全部完成后才then。
+// race 也是同时进行，第一个完成就then，但是其他的还在继续，并不会停止。
+var req = () => Promise.all([requests.comment(), requests.people()]); // 顺序固定
+req()
+  .then(value => console.log(value))
+  .catch(error => console.log(error));
+
+// then 的错误写法
+function badAsyncCall() {
+  var p = Promise.resolve();
+  p.then(function() {
+    // ...
+    return newVar;
+  });
+  return p;
+}
+// 修正
+function anAsyncCall() {
+  var p = Promise.resolve();
+  return p.then(function() {
+    // ...
+    return newVar;
+  });
+}
 ```

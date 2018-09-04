@@ -19,11 +19,15 @@
 1. [CodePen](https://codepen.io/pen)
 1. [CodeSandbox](https://codesandbox.io/)
 
+---
+
 1. [HTML5 test](https://html5test.com/)
 1. [CSS3 test](https://airen.github.io/css3test/)
 1. [CSS animations](https://animista.net/)
 1. [Canvas awesome](https://www.dwitter.net/)
 1. [Can I Use](https://caniuse.com/)
+
+---
 
 1. [正则测试](https://regexr.com/)
 1. [Linux 命令搜索](https://wangchujiang.com/linux-command/)
@@ -43,6 +47,8 @@
 1. [JavaScript Promise 迷你书](https://liubin.org/promises-book/)
 1. [30 seconds of JScode](https://30secondsofcode.org/)
 
+---
+
 1. [JavaScript Style Guide](https://github.com/airbnb/javascript)
 1. [Baidu JavaScript Style](https://github.com/ecomfe/spec)
 
@@ -58,4 +64,4 @@
 1. [内置对象的属性方法](/cheatSheet/内置对象的属性方法.md/)
 1. [JS 小知识](/cheatSheet/JS小知识.md/)
 1. [JS 常用函数练习](/cheatSheet/JS常用函数练习.md/)
-1. [正则练习](./cheatSheet/正则练习.md/)
+1. [正则练习](/cheatSheet/正则练习.md/)

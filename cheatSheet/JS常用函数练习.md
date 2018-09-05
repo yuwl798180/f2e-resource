@@ -64,22 +64,36 @@ console.log(c); // 10
 
 ```js
 // xhr 例子
-const getURL = URL =>
-  new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
+const getURL = URL => {
+  const xhr = new XMLHttpRequest();
+  const promise = new Promise((resolve, reject) => {
     xhr.open('GET', URL, true);
     xhr.onload = function() {
       if (xhr.status === 200) {
-        resolve(xhr.responseText);
+        resolve(xhr.response || xhr.responseText);
       } else {
-        reject(new Error(xhr.statusText));
+        reject(new Error(xhr.status + ' : ' + xhr.statusText));
       }
     };
     xhr.onerror = function() {
-      reject(new Error(xhr.statusText));
+      reject(new Error(xhr.status + ' : ' + xhr.statusText));
+    };
+    xhr.onabort = function() {
+      reject(new Error('abort this request'));
     };
     xhr.send();
   });
+  const abort = function() {
+    if (xhr.readyState !== XMLHttpRequest.UNSENT) {
+      xhr.abort();
+    }
+  };
+
+  return {
+    promise,
+    abort,
+  };
+};
 
 const URL = [
   'http://azu.github.io/promises-book/json/comment.json',
@@ -87,38 +101,61 @@ const URL = [
 ];
 
 // 单一请求
-getURL(URL[0])
-  .then(JSON.parse)
-  .then(value => console.log(value))
-  .catch(error => console.log(error));
+var singleReq = getURL(URL[0])
+  .promise.then(JSON.parse) // value=>JSON.parse(value)
+  .then(console.log)
+  .catch(error => console.error(error));
 
 // 多请求
-var requests = {
-  comment: () => getURL(URL[0]).then(JSON.parse),
-  people: () => getURL(URL[1]).then(JSON.parse),
-};
 // all 是所有同时进行，全部完成后才then。
 // race 也是同时进行，第一个完成就then，但是其他的还在继续，并不会停止。
-var req = () => Promise.all([requests.comment(), requests.people()]); // 顺序固定
-req()
-  .then(value => console.log(value))
-  .catch(error => console.log(error));
+var multiReqObj = {
+  comment: () => getURL(URL[0]).promise.then(JSON.parse),
+  people: () => getURL(URL[1]).promise.then(JSON.parse),
+};
 
-// then 的错误写法
-function badAsyncCall() {
-  var p = Promise.resolve();
-  p.then(function() {
-    // ...
-    return newVar;
+var multiReq = Promise.all([multiReqObj.comment(), multiReqObj.people()])
+  .then(console.log)
+  .catch(console.error);
+
+// 多个请求顺序执行时，使用数组的 reduce 方法
+var sequenceArr = [multiReqObj.comment, multiReqObj.people];
+var sequenceTasks = arr => {
+  const recordValue = (results, value) => {
+    results.push(value);
+    return results;
+  };
+  const pushValue = recordValue.bind(null, []);
+  return arr.reduce(
+    (promise, a) => promise.then(a).then(pushValue),
+    Promise.resolve()
+  );
+};
+sequenceTasks(sequenceArr)
+  .then(console.log)
+  .catch(console.error);
+
+// 超时判断，超时就取消xhr
+// 利用 race 和 sleep 一起
+class TimeoutError extends Error {}
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const timeoutPromise = (promise, ms) =>
+  Promise.race([
+    promise,
+    sleep(ms).then(() => {
+      throw new TimeoutError('Operation timed out after ' + ms + ' ms');
+    }),
+  ]);
+
+var timeoutReq = getURL(URL[0]);
+timeoutPromise(timeoutReq.promise, 1000)
+  .then(JSON.parse)
+  .then(console.log)
+  .catch(error => {
+    if (error instanceof TimeoutError) {
+      timeoutReq.abort();
+      return console.error(error);
+    }
+    return console.error(error);
   });
-  return p;
-}
-// 修正
-function anAsyncCall() {
-  var p = Promise.resolve();
-  return p.then(function() {
-    // ...
-    return newVar;
-  });
-}
 ```

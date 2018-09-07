@@ -7,6 +7,7 @@
 - [基础知识](#基础知识)
   - [js 引擎的解释机制](#js-引擎的解释机制)
   - [js 引擎的提升机制](#js-引擎的提升机制)
+  - [渲染引擎](#渲染引擎)
 - [对象](#对象)
   - [数字字面量当作对象使用的方法](#数字字面量当作对象使用的方法)
   - [删除对象的指定属性](#删除对象的指定属性)
@@ -94,6 +95,41 @@
    }
    var value = 1;
    console.log(typeof value); //"number"
+   ```
+
+### 渲染引擎
+
+渲染引擎处理网页，通常分成四个阶段。 1. 解析代码：HTML 代码解析为 DOM，CSS 代码解析为 CSSOM（CSS Object Model） 1. 对象合成：将 DOM 和 CSSOM 合成一棵渲染树（render tree） 1. 布局：计算出渲染树的布局（layout） 1. 绘制：将渲染树绘制到屏幕
+
+1. 渲染树转换为网页布局，称为“布局流”（flow）；布局显示到页面的这个过程，称为“绘制”（paint）。它们都具有阻塞效应，并且会耗费很多时间和计算资源。
+1. 页面生成以后，脚本操作和样式表操作，都会触发重流（reflow）和重绘（repaint）。用户的互动，也会触发，比如设置了鼠标悬停（a:hover）效果、页面滚动、在输入框中输入文本、改变窗口大小等等。
+1. 尽量设法降低重绘的次数和成本
+
+   1. 读取 DOM 或者写入 DOM，尽量写在一起，不要混杂
+   1. 缓存 DOM 信息
+   1. 不要一项一项地改变样式，而是使用 CSS class 一次性改变样式
+   1. 使用 document fragment 操作 DOM
+   1. 动画时使用 absolute 定位或 fixed 定位，这样可以减少对其他元素的影响
+   1. 只在必要时才显示元素
+   1. 使用 window.requestAnimationFrame()，因为它可以把代码推迟到下一次重流时执行，而不是立即要求页面重流
+   1. 使用虚拟 DOM（virtual DOM）库
+
+   ```js
+   // 重绘代价高
+   function doubleHeight(element) {
+     var currentHeight = element.clientHeight;
+     element.style.height = currentHeight * 2 + 'px';
+   }
+   all_my_elements.forEach(doubleHeight);
+
+   // 重绘代价低
+   function doubleHeight(element) {
+     var currentHeight = element.clientHeight;
+     window.requestAnimationFrame(function() {
+       element.style.height = currentHeight * 2 + 'px';
+     });
+   }
+   all_my_elements.forEach(doubleHeight);
    ```
 
 ## 对象

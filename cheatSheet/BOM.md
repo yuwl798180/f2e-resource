@@ -2,6 +2,8 @@
 
 > 浏览器对象模型：Browser Object Document
 
+---
+
 <!-- TOC depthFrom:2 depthTo:2 -->
 
 - [Window 对象](#window-对象)

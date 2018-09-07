@@ -1,5 +1,7 @@
 # JS 小知识
 
+---
+
 <!-- TOC depthFrom:2 -->
 
 - [基础知识](#基础知识)
@@ -122,6 +124,44 @@ classTest(new Number(12)); // Number
 
 ### 对象类型转换
 
+- 强制类型转换
+
+```js
+Number(str); // 有一个字符不是数值，就是 NaN，比 parseInt() 严格
+Number(obj); // 转换为 NaN，除了单数值数组  Number([5]) === 5
+Number(obj); // 机制：先调用对象 valueOf()，不是原始类型再调用 toString()
+
+String(arr); // 返回数组的字符串形式  String([1,2,3]) === '1,2,3'
+String(obj); // 返回类型字符串       String({}) === '[object Object]'
+String(obj); // 机制：先调用对象 toString()，不是原始类型再调用 valueOf()
+
+Boolean(b); // 6个为假： undefined  null  ±0  NaN  ''  false
+```
+
+- 自动类型转换
+
+```
+// 1. 有一项为字符串就是字符串拼接
+123 + 'abc'; // "123abc"
+
+// 2. 对非布尔值类型的数据求布尔值
+if ('abc') {
+  console.log('hello');
+} // "hello"
+
+// 3. 对非数值类型的数据使用一元运算符（即“+”和“-”）
++{ foo: 'bar' }  // NaN
++[1, 2, 3]       // NaN
+
+// 4. 几个怪癖
++[1]            // 1
+null + 1        // 1
+undefined + 1   // NaN
+
+undefined == 0  // false ，不能和任何数字比较
+null == 0       // false ，同上
+```
+
 ```js
 // 下面的比较结果是：true
 new Number(10) == 10; // Number.toString() 返回的字符串被再次转换为数字
@@ -234,6 +274,12 @@ hasOwnProperty 不遍历原型，遍历不可枚举
 1. 构造函数内使用 this：指向新创建的对象
 1. apply call 显式设置 this：显式设置为函数调用的第一个参数
 
+-. 使用时注意点
+
+1. 避免多层 this， 内部 若要使用 this，最好将外部 this 固定为 that，内部引用 that 对象。
+1. 数组处理方法中的 this，如 map 和 foreach，若要使用 this 时，最好考虑清楚是否需要添加 map 的第二个参数 this，固定运行环境时的数组。
+1. 在回掉函数如添加 dom 事件时，考虑清楚是否需要绑定 this。
+
 - 常见误解一：直接调用函数时，this 指向全局对象，这是语言设计的错误地方！
 
 ```js
@@ -283,14 +329,31 @@ foo.bar(); // Reference, OK => foo
 
 ### new 的过程
 
+1. 创建一个空对象，作为将要返回的对象实例；
+1. 将这个空对象的原型，指向构造函数的 prototype 属性；
+1. 将这个空对象赋值给函数内部的 this 关键字；
+1. 开始执行构造函数内部的代码；
+1. 如果构造函数内部有 return 语句，而且 return 后面跟着一个对象，new 命令会返回 return 语句指定的对象；否则，就会不管 return 语句，返回 this 对象。
+
 ```js
-var newGen = function() {
+// 类似 new 过程 的 new generator
+var newGen = function(/* constructor, param1 */) {
   var obj = new Object(); // 从 Object.prototype 上克隆一个空的对象
   Constructor = [].shift.call(arguments); // 取得外部传入的构造器
-  obj.__proto__ = Constructor.prototype; // 指向正确的原型
+  Object.setPrototypeOf(obj, Object.getPrototypeOf(Constructor));
+  // or obj.__proto__ = Constructor.prototype; // 指向正确的原型
   var ret = Constructor.apply(obj, arguments); // 借用外部传入的构造器给 obj 设置属性
   return typeof ret === 'object' ? ret : obj; // 确保构造器总是会返回一个对象
 };
+
+// or use Object.create()
+function _new(/* constructor, param1 */) {
+  var args = [].slice.call(arguments);
+  var Constructor = args.shift();
+  var obj = Object.create(Constructor.prototype);
+  var ret = Constructor.apply(obj, args);
+  return typeof ret === 'object' ? ret : obj;
+}
 
 function Person(name) {
   this.name = name;

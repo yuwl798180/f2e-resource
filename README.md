@@ -67,13 +67,14 @@
 1. [Event](/cheatSheet/Event.md/)
 1. [Ajax](/cheatSheet/Ajax.md/)
 1. [Fetch](/cheatSheet/Fetch.md/)
+1. [表单脚本](/cheatSheet/表单脚本.md/)
+
 ---
 
 > js 相关
 
 1. [内置对象的属性方法](/cheatSheet/内置对象的属性方法.md/)
 1. [单线程与异步](/cheatSheet/单线程与异步.md/)
-
 
 1. [JS 小知识](/cheatSheet/JS小知识.md/)
 1. [JS 常用函数练习](/cheatSheet/JS常用函数练习.md/)

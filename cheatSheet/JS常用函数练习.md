@@ -3,8 +3,9 @@
 <!-- TOC depthFrom:2 -->
 
 - [Function.prototype.bind 方法](#functionprototypebind-方法)
+- [关于循环和闭包](#关于循环和闭包)
 - [作用域安全的构造函数](#作用域安全的构造函数)
-- [关于**引用类型指针**的工作方式](#关于引用类型指针的工作方式)
+- [关于引用类型指针的工作方式](#关于引用类型指针的工作方式)
 - [链式调用函数 add()](#链式调用函数-add)
 - [关于全局变量](#关于全局变量)
 - [Promise 改写 xhr](#promise-改写-xhr)
@@ -37,6 +38,30 @@ bind = Function.prototype.call.bind(Function.prototype.bind); // 类比提取 bi
 join = Function.prototype.call.bind(Array.prototype.join); // 类比提取 join 方法
 ```
 
+## 关于循环和闭包
+
+```js
+for (var i = 0; i < 3; i++) {
+  setTimeout(function() {
+    console.log(i); // 3 3 3
+  }, 0);
+  console.log(i); // 0 1 2
+}
+// 0 1 2 3 3 3
+
+// 改成 let ，babel 后
+var _loop = function _loop(i) {
+  setTimeout(function() {
+    console.log(i); // 0 1 2
+  }, 0);
+  console.log(i); // 0 1 2
+};
+for (var i = 0; i < 3; i++) {
+  _loop(i);
+}
+// 0 1 2 0 1 2
+```
+
 ## 作用域安全的构造函数
 
 > 当通过构造函数定义新实例时，忘记 new 会导致实例挂载在全局对象下。
@@ -55,7 +80,7 @@ var person1 = new Person('leo', 20);
 var person2 = Person('Dave', 22);
 ```
 
-## 关于**引用类型指针**的工作方式
+## 关于引用类型指针的工作方式
 
 ```js
 var a = {n: 1};

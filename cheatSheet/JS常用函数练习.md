@@ -2,12 +2,40 @@
 
 <!-- TOC depthFrom:2 -->
 
+- [Function.prototype.bind 方法](#functionprototypebind-方法)
 - [作用域安全的构造函数](#作用域安全的构造函数)
 - [关于**引用类型指针**的工作方式](#关于引用类型指针的工作方式)
+- [链式调用函数 add()](#链式调用函数-add)
 - [关于全局变量](#关于全局变量)
 - [Promise 改写 xhr](#promise-改写-xhr)
 
 <!-- /TOC -->
+
+## Function.prototype.bind 方法
+
+```js
+Function.prototype.bind =
+  Function.prototype.bind ||
+  function() {
+    var fn = this,
+      context = [].shift.call(arguments),
+      args = [].slice.call(arguments);
+    return function() {
+      return fn.apply(context, args);
+    };
+  };
+
+// 改写 f.bind(o) 为 bind(f, o)
+var bind = Function.prototype.call.bind(Function.prototype.bind);
+
+// 思路： 从 arr.slice(1, 2)改造
+arr.slice(2, 4); // 等价于
+Array.prototype.slice.call(arr, 2, 4); // 接着提取 slice 方法
+slice = Function.prototype.call.bind(Array.prototype.slice);
+slice(arr, 2, 4);
+bind = Function.prototype.call.bind(Function.prototype.bind); // 类比提取 bind 方法
+join = Function.prototype.call.bind(Array.prototype.join); // 类比提取 join 方法
+```
 
 ## 作用域安全的构造函数
 
@@ -30,9 +58,9 @@ var person2 = Person('Dave', 22);
 ## 关于**引用类型指针**的工作方式
 
 ```js
-var a = { n: 1 };
+var a = {n: 1};
 var b = a;
-a.x = a = { n: 2 }; // 或写成 a = a.x = {n: 2};
+a.x = a = {n: 2}; // 或写成 a = a.x = {n: 2};
 console.log(a); // {n: 2}
 console.log(b); // {n: 1, x: {n: 2}}
 ```
@@ -43,6 +71,28 @@ console.log(b); // {n: 1, x: {n: 2}}
 2. 接着执行 a = {n:2}，此时a不再和b共享同对象的指针而是指向新对象{n:2}；
 3. 下一步执行 a.x = a，此时这两个a已经是完全不一样的东西，前者指向{n:1,x:undefined}，后者指向{n:2}。
    执行这一步，{n:1,x:undefined}这个对象（b指向的对象）变为{n:1,x:a}，而a只是指向{n:2}。
+```
+
+## 链式调用函数 add()
+
+```js
+function add() {
+  var args = [].slice.call(arguments);
+
+  var fn = function() {
+    var fnArg = [].slice.call(arguments);
+    return add.apply([], args.concat(fnArg));
+  };
+  fn.valueOf = function() {
+    return args.reduce((a, b) => a + b);
+  };
+  return fn;
+}
+
+add(1); // 1
+add(1)(2); // 3
+add(1, 2, 3)(10); // 16
+add(1)(2)(3)(4)(5); // 15
 ```
 
 ## 关于全局变量

@@ -122,11 +122,11 @@
 1. 多列
 
    ```
-   列宽列数    columns / -width,-count
-   列之间样式  column-rule / -width,-style,-color
-   列间隙      column-gap
-   横跨       column-span: all
-   列高统一   column-fill: balance
+   列宽列数     columns / -width,-count
+   列之间样式   column-rule / -width,-style,-color
+   列间隙       column-gap
+   横跨         column-span: all
+   列高统一      column-fill: balance
    ```
 
 ## Flex
@@ -195,29 +195,29 @@
 
 ## transform、transition、animation
 
-- transform
+1. transform
 
-  ```
-  transform: translate / rotate / scale / skew
-  transform-origin: 50% 50%
-  transform-style: flat / preserve-3d
-  perspective: none / 观察者与z=0平面的距离，2倍盒大小适宜
-  perspective-origin: 50% 50%
-  baceface-visibility: visible / hidden
-  ```
+   ```
+   transform: translate / rotate / scale / skew
+   transform-origin: 50% 50%
+   transform-style: flat / preserve-3d
+   perspective: none / 观察者与z=0平面的距离，2倍盒大小适宜
+   perspective-origin: 50% 50%
+   baceface-visibility: visible / hidden
+   ```
 
-- transform-function
+1. transform-function
 
-  ```
-  matrix(a,b,c,d,e,f)
-  matrix3d(4*4)
+   ```
+   matrix(a,b,c,d,e,f)
+   matrix3d(4*4)
 
-  平移  translateX(x)   translate(x,y)  translate3d(x,y,z)
-  旋转  rotateX(angle)  rotate(angle)   rotate3d(x,y,z,angle)
-  缩放  scaleX(x)       scale(x,y)      scale3d(x,y,z)
-  拉伸  skewX(angle)    skew(x-angle,y-angle)
-  透视  perspective(n)  不如直接在舞台上用 perspective, 多3D项目时更真实
-  ```
+   平移  translateX(x)   translate(x,y)  translate3d(x,y,z)
+   旋转  rotateX(angle)  rotate(angle)   rotate3d(x,y,z,angle)
+   缩放  scaleX(x)       scale(x,y)      scale3d(x,y,z)
+   拉伸  skewX(angle)    skew(x-angle,y-angle)
+   透视  perspective(n)  不如直接在舞台上用 perspective, 多3D项目时更真实
+   ```
 
 1. transition
 
@@ -252,8 +252,8 @@
 1. text-shadow: 水平偏移，垂直偏移，阴影模糊，color
 1. text-indent: 适用于块/内联块，有继承性
 1. vertical-align: 适用于内联元素与 table-cell 元素
-1. 空格的处理方式 white-space: normal | pre | nowrap | pre-wrap | pre-line
-1. 内容超过指定容器的边界时是否断行 word-wrap: normal | break-word
+1. 空格的处理方式 white-space: `normal | pre | nowrap | pre-wrap | pre-line`
+1. 内容超过指定容器的边界时是否断行 word-wrap: `normal | break-word`
 1. border-image: 5 属性简写 / source,slice,width,outset,repeat
 1. background-image: 不是简写！
 1. background: 8 属性简写 / -color,-image,-repeat,-attachment,-position,-origin,-clip,-size

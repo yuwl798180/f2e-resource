@@ -59,13 +59,29 @@
 
 ## 个人笔记
 
+> web 相关
+
 1. [html 标签速记](/cheatSheet/html标签速记.md/)
 1. [BOM](/cheatSheet/BOM.md/)
+
+---
+
+> js 相关
+
 1. [内置对象的属性方法](/cheatSheet/内置对象的属性方法.md/)
+1. [Ajax](/cheatSheet/Ajax.md/)
+
+
 1. [JS 小知识](/cheatSheet/JS小知识.md/)
 1. [JS 常用函数练习](/cheatSheet/JS常用函数练习.md/)
 1. [正则练习](/cheatSheet/正则练习.md/)
 
 ---
 
+> css 相关
+
 1. [css 基础知识](/cheatSheet/css基础知识.md/)
+1. [sass 基础知识](/cheatSheet/sass基础知识.md/)
+1. [css 布局](/cheatSheet/css布局.md/)
+1. [css3 效果](/cheatSheet/css3效果.md/)
+1. [ie hack](/cheatSheet/iehack.md/)

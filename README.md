@@ -90,3 +90,9 @@
 1. [css 布局](/cheatSheet/css布局.md/)
 1. [css3 效果](/cheatSheet/css3效果.md/)
 1. [ie hack](/cheatSheet/iehack.md/)
+
+---
+
+> demo
+
+1. [demo: css-flex-demo](https://github.com/yuwl798180/demo-flex)

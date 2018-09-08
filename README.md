@@ -52,6 +52,10 @@
 1. [JavaScript Style Guide](https://github.com/airbnb/javascript)
 1. [Baidu JavaScript Style](https://github.com/ecomfe/spec)
 
+## React
+
+1. [study-react](https://github.com/yuwl798180/study-react)
+
 ## NodeJs
 
 1. [iKcamp](https://www.ikcamp.com/)
@@ -78,12 +82,10 @@
 1. [内置对象的属性方法](/cheatSheet/内置对象的属性方法.md/)
 1. [单线程与异步](/cheatSheet/单线程与异步.md/)
 
-1. [JS 常用函数练习](/cheatSheet/JS常用函数练习.md/)
-1. [正则练习](/cheatSheet/正则练习.md/)
-
 ---
 
-1. [study-react](https://github.com/yuwl798180/study-react)
+1. [JS 常用函数练习](/cheatSheet/JS常用函数练习.md/)
+1. [正则练习](/cheatSheet/正则练习.md/)
 
 ---
 

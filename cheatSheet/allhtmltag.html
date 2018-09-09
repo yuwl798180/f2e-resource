@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>all html tag</title>
+<base target="_blank" />
+<link rel="stylesheet" href="#.css">
+<style>
+th, td, figure, img {
+    border: 1px solid;
+}
+pre:first-child {
+    border: 1px solid;
+    padding: 15px 0 15px 20px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<pre>
+自闭标签：hr, br, input, img, area, wbr
+内联元素：a, img, span, br, label, q, abbr, bdo, cite, code, em, strong
+块元素：
+        div, hx, p, hr, blockquote, pre, form, fieldset, legend, figure, figcaption,
+        ol, ul, li(list-item), dl, dt, dd, table(table)
+        nav, header, hgroup, section, article, aside, footer, detail, summary, main
+内联块：input
+可替换元素：img, input, textarea, select, object, video
+某些情况下表现为可替换元素：audio, canvas
+匿名可替换元素：::before 和 ::after 的 content
+</pre>
+
+<!--this is basis-->
+<hr />
+<h1>h1标题</h1>
+<h2>h2标题</h2>
+<h3>h3标题</h3>
+<h4>h4标题</h4>
+<h5>h5标题</h5>
+<h6>h6标题</h6>
+<p>this is a paragraph.</p>
+
+<!--this is format-->
+<hr />
+<abbr title="abbreviation">abbr</abbr>
+<i>i</i>
+<b>b</b>
+<em>em</em>
+<strong>strong</strong>
+<sup>sup</sup>
+<sub>sub</sub>
+<del>del</del>
+<ins>ins</ins>
+<mark>mark</mark>
+
+<bdo dir="rtl">bdo</bdo>
+<q>q</q>
+<blockquote>blockquote</blockquote>
+
+<kbd>kbd</kbd>
+<samp>samp</samp>
+<var>var</var>
+<code>code</code>
+<cite>cite</cite>
+<pre>pre</pre>
+
+<ruby>ruby</ruby>
+<rt>rt</rt>
+<rp>rp</rp>
+
+<time>time</time>
+<a href="http://www.baidu.com" target="_blank">a</a>
+
+<!--h5语义标签-->
+<hr />
+<nav>nav</nav>
+<header>header</header>
+<hgroup>hgroup</hgroup>
+<main>main</main>
+<section>section</section>
+<article>article</article>
+<aside>aside</aside>
+<footer>footer</footer>
+<details open="open">
+    <summary>detail summary</summary>
+    <p>this is detail tag.summary like caption.</p>
+</details>
+
+<!--this is form-->
+<br /><br /><hr /><br /><br />
+<form name="formname" id="formid" action="#" method="get" autocomplete="on" novalidate="novalidate" target="_self">
+    <fieldset>
+        <legend>fieldset包裹，legend标题</legend>
+        <label for="labelid">label for id</label>
+        <input id="labelid" type="text" placeholder="input placeholder" autofocus="autofocus" />
+        <p> input type:text password radio checkbox button submit reset hidden search tel email url file image color date time datetime datetime-local week month number range</p>
+        <textarea rows="5" cols="30" style="resize:vertical">textarea style="resize:vertical" //horizontal,none,both</textarea>
+        <button type="button">button</button>
+        <select>
+            <optgroup label="select">
+                <option>optgroup</option>
+                <option>option</option>
+            </optgroup>
+            <optgroup label="optgroup label" disabled="disabled">
+                <option selected="selected">selected</option>
+                <option disabled="disabled">disabled</option>
+            </optgroup>
+        </select>
+        <input list="datalist" />
+        <datalist id="datalist">
+            <option>input list="datalist"</option>
+            <option>datalist id="datalist"</option>
+            <option>option列选项</option>
+        </datalist>
+    </fieldset>
+</form>
+
+<!--h5 new-->
+<br /><br /><hr /><br /><br />
+<form oninput="result.value=parseFloat(a.value)+parseFloat(b.value)">
+    <fieldset>
+        meter<meter value="0.3">meter</meter>
+        progress<progress value="0.7">progress</progress>
+        <input type="range" name="a" value="50" /> +
+        <input type="number" name="b" value="50" /> =
+        <output name="result">output</output>
+    </fieldset>
+</form>
+
+<!--this is iframe-->
+<iframe src="http://www.baidu.com/" frameborder="0" width="500px" height="300px" scrolling="auto" seamless="seamless" sandbox="allow-scripts allow-same-origin allow-top-navigation allow-forms"></iframe>
+
+<!--this is image-->
+<br /><br /><hr /><br /><br />
+<img src="http://www.baidu.com/img/baidu_logo.gif" alt="baidu-logo" width="270px" height="129px" />
+usemap map area
+<img src="http://www.baidu.com/img/baidu_logo.gif" alt="baidu-logo" usemap="#usemap" />
+<map name="usemap">
+    <area shape="rect" coords="50,50,111,88" href="http://wenku.baidu.com/" alt="wenku" target="_blank" />
+    <area shape="circle" coords="135,55,25" href="http://baike.baidu.com" alt="baike" target="_blank" />
+    <area shape="poly" coords="164,44,163,57,163,84,221,84,219,48" href="http://image.baidu.com" alt="image" target="_blank" />
+</map>
+<figure>
+    <figcaption>figure figcaption</figcaption>
+    <img src="http://www.baidu.com/img/baidu_logo.gif" alt="baidu-logo" width="270px" height="129px" />
+</figure>
+
+<!--this is list-->
+<br /><br /><hr /><br /><br />
+<ul>ul
+    <li>li</li>
+    <li>li</li>
+</ul>
+<ol>ol
+    <li>li</li>
+    <li>li</li>
+</ol>
+<dl>dl
+    <dt>dt</dt>
+    <dd>dd</dd>
+</dl>
+
+<!--this is table-->
+<br /><br /><hr /><br /><br />
+<table style="border:1px solid;caption-side: bottom;" width="300px">
+    <caption>table caption</caption>
+    <thead>
+        <tr>
+            <th>thead</th>
+            <th>th</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>tbody</td>
+            <td>td</td>
+        </tr>
+        <tr>
+            <td>tbody</td>
+            <td>td</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>tfoot</td>
+            <td>td</td>
+        </tr>
+    </tfoot>
+</table>
+
+<!--this is audio video-->
+<br /><br /><hr /><br /><br />
+
+<audio src="http://www.w3school.com.cn/i/horse.ogg" controls="controls">
+    <source src="http://www.w3school.com.cn/i/song.ogg" type="audio/ogg">
+    <source src="http://www.w3school.com.cn/i/song.mp3" type="audio/mpeg">
+    autoplay="autoplay" controls="controls" loop="loop" muted="muted" preload="preload"
+</audio>
+<br />
+<video width="320px" height="240px" controls="controls">
+    <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg">
+    <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4">
+    <track></track>
+    autoplay="autoplay" controls="controls" loop="loop" muted="muted" preload="preload" poster="/image/xx.jpg"
+</video>
+<br />
+<embed src="http://www.w3school.com.cn/i/helloworld.swf" type="" />
+
+</body>
+</html>

@@ -66,6 +66,7 @@
 > web 相关
 
 1. [html 标签速记](/cheatSheet/html标签速记.md/)
+1. [all html tag](/cheatSheet/allhtmltag.html/)
 1. [BOM](/cheatSheet/BOM.md/)
 1. [DOM](/cheatSheet/DOM.md/)
 1. [Event](/cheatSheet/Event.md/)
@@ -102,3 +103,4 @@
 > demo
 
 1. [demo: css-flex-demo](https://github.com/yuwl798180/demo-flex)
+1. [demo: css3-Baymax](https://yuwl798180.github.io/demo-flex/example/Baymax.html)

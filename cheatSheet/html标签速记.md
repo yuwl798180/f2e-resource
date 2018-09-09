@@ -79,3 +79,23 @@ body 标签下的子标签，是呈现在网页端的内容，按照类别，主
 | source   | 为媒介元素，定义媒介资源。                                                                                                                                                                |
 | track    | 标签为诸如 video 元素之类的媒介规定外部文本轨道。用于规定字幕文件或其他包含文本的文件，当媒介播放时，这些文件是可见的。                                                                   |
 | wbr      | 规定在文本中的何处适合添加换行符。如果单词太长，或者您担心浏览器会在错误的位置换行，那么您可以使用 `<wbr>` 元素来添加 Word Break Opportunity（单词换行时机）。                            |
+
+## 元素分类
+
+| 元素类别                   | 包括                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------ |
+| 块级元素 1                 | nav, header, hgroup, section, article, aside, footer, detail, summary, main    |
+| 块级元素 2                 | div, h1-h6, p, hr, blockquote, pre, form, fieldset, legend, figure, figcaption |
+| 块级元素 3                 | ol, ul, li(list-item), dl, dt, dd, table(table)                                |
+| 内联元素                   | a, span, br, label, q, abbr, bdo, cite, code, em, strong                       |
+| 内联块                     | input                                                                          |
+| 可替换元素                 | img, input, textarea, select, object, video                                    |
+| 某些情况下表现为可替换元素 | audio, canvas                                                                  |
+| 匿名可替换元素             | ::before 和 ::after 的 content                                                 |
+
+## 块级元素、行内元素、可替换元素
+
+1. 块级元素大多为结构性标记，行内元素大多为描述性标记。
+1. 块级元素总是从新的一行开始，高度、宽度都是可控的，宽度没有设置时，默认为 100%。
+1. 行内元素和其他元素都在一行，高度、宽度以及内边距都是不可控的，宽高就是内容的高度，不可以改变，但是可以设置行高。
+1. 可替换元素：浏览器根据元素的标签和属性，来决定元素的具体显示内容。替换元素一般有内在尺寸和宽高比(auto 时起作用)，所以具有 width 和 height，可以设定。

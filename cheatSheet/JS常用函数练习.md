@@ -16,6 +16,7 @@
 - [动态脚本、样式](#动态脚本样式)
 - [错误处理机制](#错误处理机制)
 - [数组的空元素变成 undefined](#数组的空元素变成-undefined)
+- [数字添加千分位](#数字添加千分位)
 - [promisify 函数](#promisify-函数)
 - [关于全局变量](#关于全局变量)
 - [Promise 改写 xhr](#promise-改写-xhr)
@@ -386,6 +387,20 @@ const empty2undefined = arr => Array.apply(null, arr);
 
 var arr = ['a', , 'b'];
 empty2undefined(arr);
+```
+
+## 数字添加千分位
+
+```js
+//不考虑非数字
+var miliFormat = num => {
+  let regexp = /(^|\s)-?\d+(?=\.?\d*($|\s))/g;
+  let replaceFunc = /(?=(?!\b)(\d{3})+\.?\b)/g;
+  return num.toString().replace(regexp, m => m.replace(replaceFunc, ','));
+};
+
+var a = -1234567.123456;
+console.log(miliFormat(a));
 ```
 
 ## promisify 函数

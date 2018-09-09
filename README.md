@@ -102,5 +102,9 @@
 
 > demo
 
+1. [demo: canvas-烟花](/demo/firework.html)
+1. [demo: canvas-枫叶](/demo/mapleleaf.html)
 1. [demo: css-flex-demo](https://github.com/yuwl798180/demo-flex)
 1. [demo: css3-Baymax](https://yuwl798180.github.io/demo-flex/example/Baymax.html)
+
+1. [demo: sort visualize](/demo/SortVisualize.html)

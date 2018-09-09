@@ -18,8 +18,9 @@
 - [数组的空元素变成 undefined](#数组的空元素变成-undefined)
 - [数字添加千分位](#数字添加千分位)
 - [promisify 函数](#promisify-函数)
-- [关于全局变量](#关于全局变量)
 - [Promise 改写 xhr](#promise-改写-xhr)
+- [关于全局变量](#关于全局变量)
+- [关于 this 和 new 的运算符优先级](#关于-this-和-new-的运算符优先级)
 
 <!-- /TOC -->
 
@@ -121,6 +122,9 @@ console.log(b); // {n: 1, x: {n: 2}}
 ```
 
 ## 链式调用函数 add()
+
+> Object.prototype.valueOf() 返回指定对象的原始值,把对象转换成原始类型的值。
+> Object.prototype.toString() 返回一个表示该对象的字符串。
 
 ```js
 function add() {
@@ -432,21 +436,6 @@ var promisify = (func, ctx) => {
 };
 ```
 
-## 关于全局变量
-
-```js
-var a = 2,
-  b = 3,
-  c = 4;
-(function() {
-  var a = (b = c = 10);
-})();
-
-console.log(a); // 2
-console.log(b); // 10
-console.log(c); // 10
-```
-
 ## Promise 改写 xhr
 
 ```js
@@ -545,4 +534,66 @@ timeoutPromise(timeoutReq.promise, 1000)
     }
     return console.error(error);
   });
+```
+
+## 关于全局变量
+
+```js
+var a = 2,
+  b = 3,
+  c = 4;
+(function() {
+  var a = (b = c = 10);
+})();
+
+console.log(a); // 2
+console.log(b); // 10
+console.log(c); // 10
+```
+
+## 关于 this 和 new 的运算符优先级
+
+```js
+function Foo() {
+  getName = function() {
+    console.log(1);
+  };
+  return this; //window
+}
+Foo.getName = function() {
+  console.log(2);
+}; // 静态属性
+Foo.prototype.getName = function() {
+  console.log(3);
+}; // 原型对象
+var getName = function() {
+  console.log(4);
+};
+function getName() {
+  console.log(5);
+}
+
+// 请写出以下输出结果：
+Foo.getName(); //2
+getName(); //4
+Foo().getName(); //1
+getName(); //1
+new Foo.getName(); //2         new (Foo.getName)()
+new Foo().getName(); //3       (new Foo()).getName()
+new new Foo().getName(); //3    new ((new Foo()).getName)();
+// new  ( new  Foo().getName )()
+
+// 真正解析时顺序
+// function Foo() {
+//     getName = function () { alert (1); };
+//     return this;
+// }
+// var getName;//只提升变量声明
+// function getName() { alert (5);}//提升函数声明，覆盖var的声明
+
+// Foo.getName = function () { alert (2);};
+// Foo.prototype.getName = function () { alert (3);};
+// getName = function () { alert (4);};//最终的赋值再次覆盖function getName声明
+
+// getName();//最终输出4
 ```

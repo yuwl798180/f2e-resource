@@ -54,7 +54,17 @@
 
 ## React
 
-1. [study-react](https://github.com/yuwl798180/study-react)
+1. [react 官方](https://reactjs.org/)  [中文官网](https://react.docschina.org/)
+1. [redux](https://redux.js.org/)  [中文官网](http://cn.redux.js.org/)
+1. [react router](https://reacttraining.com/react-router/)
+1. [react native](http://facebook.github.io/react-native/)  [中文官网](https://reactnative.cn/)
+1. [jestjs 测试](https://jestjs.io/zh-Hans/)
+1. [antd](https://ant.design/index-cn)
+1. [react examples](https://react.rocks/)
+
+---
+
+1. [react-record](https://github.com/yuwl798180/react-record)
 
 ## NodeJs
 
@@ -106,5 +116,4 @@
 1. [demo: canvas-枫叶](/demo/mapleleaf.html)
 1. [demo: css-flex-demo](https://github.com/yuwl798180/demo-flex)
 1. [demo: css3-Baymax](https://yuwl798180.github.io/demo-flex/example/Baymax.html)
-
 1. [demo: sort visualize](/demo/SortVisualize.html)

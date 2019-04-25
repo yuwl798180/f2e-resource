@@ -1,3 +1,5 @@
+<base target="_blank" />
+
 # study
 
 个人前端资源整合

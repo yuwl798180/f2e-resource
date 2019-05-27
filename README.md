@@ -13,7 +13,6 @@
 1. [API](https://devdocs.io/)
 1. [CSS 参考手册](https://css.doyoe.com/)
 1. [Dev Hint](https://devhints.io/)
-1. [TX 代码规范](http://tguide.qq.com/main/index.htm)
 
 ## 在线工具
 
@@ -56,10 +55,10 @@
 
 ## React
 
-1. [react 官方](https://reactjs.org/)  [中文官网](https://react.docschina.org/)
-1. [redux](https://redux.js.org/)  [中文官网](http://cn.redux.js.org/)
+1. [react 官方](https://reactjs.org/)
+1. [redux](https://redux.js.org/)
 1. [react router](https://reacttraining.com/react-router/)
-1. [react native](http://facebook.github.io/react-native/)  [中文官网](https://reactnative.cn/)
+1. [react native](http://facebook.github.io/react-native/)
 1. [jestjs 测试](https://jestjs.io/zh-Hans/)
 1. [antd](https://ant.design/index-cn)
 1. [react examples](https://react.rocks/)
